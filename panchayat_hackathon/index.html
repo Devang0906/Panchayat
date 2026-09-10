@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#176b57">
+  <title>Panchayat — Community Connect</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">P</span>
+    <div>
+      <strong>Panchayat</strong>
+      <small>Community Connect</small>
+    </div>
+  </div>
+
+  <nav>
+    <button data-page="home">Home</button>
+    <button data-page="problems">Problems</button>
+    <button data-page="help">Help Board</button>
+    <button data-page="emergency">Emergency</button>
+    <button data-page="rewards">Rewards</button>
+    <button data-page="polls">Polls</button>
+    <button data-page="events">Events</button>
+    <button data-page="dashboard" class="head-only hidden">Dashboard</button>
+  </nav>
+
+  <div class="account">
+    <span id="userLabel">Guest</span>
+    <button id="loginBtn" class="outline">Login</button>
+    <button id="logoutBtn" class="outline hidden">Logout</button>
+  </div>
+</header>
+
+<main class="container">
+
+  <section id="home" class="page active">
+    <div class="hero">
+      <div>
+        <p class="eyebrow">YOUR DIGITAL TOWN HALL</p>
+        <h1>Better community,<br><span>together.</span></h1>
+        <p>
+          Report problems, help neighbours, respond to emergencies,
+          earn community points and stay connected.
+        </p>
+
+        <div class="hero-actions">
+          <button class="primary" data-page="problems">Explore Community</button>
+          <button class="emergency-button" data-page="emergency">🚨 Emergency Help</button>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-icon">🏘️</div>
+        <h3>One place for your society</h3>
+        <p>
+          From a broken lift to a community emergency,
+          Panchayat keeps residents connected.
+        </p>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div>
+        <b id="statProblems">0</b>
+        <span>Problems</span>
+      </div>
+
+      <div>
+        <b id="statHelp">0</b>
+        <span>People offering help</span>
+      </div>
+
+      <div>
+        <b id="statEmergencies">0</b>
+        <span>Active emergencies</span>
+      </div>
+
+      <div>
+        <b id="statEvents">0</b>
+        <span>Upcoming events</span>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="section-title">
+        <div>
+          <p class="eyebrow">COMMUNITY</p>
+          <h2>Recent problems</h2>
+        </div>
+        <button class="text-btn" data-page="problems">View all →</button>
+      </div>
+
+      <div id="homeProblems" class="card-grid"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <div>
+          <p class="eyebrow">COMMUNITY HEROES</p>
+          <h2>Top helpers</h2>
+        </div>
+        <button class="text-btn" data-page="rewards">View leaderboard →</button>
+      </div>
+
+      <div id="homeLeaderboard" class="leaderboard-grid"></div>
+    </section>
+  </section>
+
+
+  <section id="problems" class="page">
+    <div class="section-title">
+      <div>
+        <p class="eyebrow">COMMUNITY ISSUES</p>
+        <h2>Problems</h2>
+        <p>Report an issue and let your neighbours know what is happening.</p>
+      </div>
+
+      <button id="newProblemBtn" class="primary">+ Report Problem</button>
+    </div>
+
+    <div id="problemFormWrap" class="panel hidden">
+      <h3>Report a problem</h3>
+
+      <form id="problemForm">
+        <input id="problemTitle" placeholder="Problem title" required maxlength="100">
+
+        <select id="problemCategory" required>
+          <option value="">Category</option>
+          <option>Maintenance</option>
+          <option>Security</option>
+          <option>Parking</option>
+          <option>Electricity</option>
+          <option>Water</option>
+          <option>Lift</option>
+          <option>Other</option>
+        </select>
+
+        <textarea id="problemDescription" placeholder="Describe the problem..." required maxlength="1000"></textarea>
+
+        <label class="check">
+          <input type="checkbox" id="anonymous">
+          Post anonymously
+        </label>
+
+        <div class="form-actions">
+          <button type="button" id="cancelProblem" class="outline">Cancel</button>
+          <button class="primary">Post Problem</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="problemsList" class="card-grid"></div>
+  </section>
+
+
+  <section id="help" class="page">
+    <div class="section-title">
+      <div>
+        <p class="eyebrow">NEIGHBOUR-TO-NEIGHBOUR</p>
+        <h2>Community Help Board</h2>
+        <p>Offer your skills or request help from another resident.</p>
+      </div>
+
+      <button id="newHelpBtn" class="primary">+ Offer Help</button>
+    </div>
+
+    <div class="info-banner">
+      <span>🤝</span>
+      <div>
+        <strong>Help someone. Earn community points.</strong>
+        <p>When your help is confirmed, you receive reward points.</p>
+      </div>
+    </div>
+
+    <div id="helpFormWrap" class="panel hidden">
+      <h3>Offer Help</h3>
+
+      <form id="helpForm">
+        <input id="helpSkill" placeholder="Skill (e.g. Electrician, Tutor)" required maxlength="60">
+        <input id="helpName" placeholder="Your name / display name" required maxlength="60">
+        <input id="helpContact" placeholder="Contact information" required maxlength="100">
+        <textarea id="helpDescription" placeholder="How can you help?" maxlength="500"></textarea>
+
+        <div class="form-actions">
+          <button type="button" id="cancelHelp" class="outline">Cancel</button>
+          <button class="primary">Add to Help Board</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="helpList" class="card-grid"></div>
+  </section>
+
+
+  <section id="emergency" class="page">
+    <div class="emergency-hero">
+      <div>
+        <p class="eyebrow danger-eyebrow">EMERGENCY RESPONSE</p>
+        <h2>Need urgent community help?</h2>
+        <p>
+          Send an emergency alert to residents and the Society Head.
+          For life-threatening situations, also contact your local emergency services.
+        </p>
+      </div>
+
+      <div class="emergency-icon">🚨</div>
+    </div>
+
+    <div class="emergency-grid">
+      <div class="panel emergency-panel">
+        <h3>Send Emergency Alert</h3>
+
+        <form id="emergencyForm">
+          <select id="emergencyType" required>
+            <option value="">Select emergency type</option>
+            <option>Medical</option>
+            <option>Fire</option>
+            <option>Security</option>
+            <option>Accident</option>
+            <option>Missing Person</option>
+            <option>Other</option>
+          </select>
+
+          <input id="emergencyLocation" placeholder="Location / building / area" required maxlength="120">
+
+          <textarea id="emergencyDescription" placeholder="What happened? Give useful details..." required maxlength="700"></textarea>
+
+          <button class="danger-button full" type="submit">
+            🚨 SEND EMERGENCY ALERT
+          </button>
+        </form>
+      </div>
+
+      <div class="panel emergency-guide">
+        <h3>Emergency Guide</h3>
+
+        <div class="guide-item">
+          <span>1</span>
+          <p><strong>Stay safe</strong><br>Move away from immediate danger if possible.</p>
+        </div>
+
+        <div class="guide-item">
+          <span>2</span>
+          <p><strong>Send the alert</strong><br>Give a clear location and emergency type.</p>
+        </div>
+
+        <div class="guide-item">
+          <span>3</span>
+          <p><strong>Community responds</strong><br>Residents can volunteer to respond.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title emergency-list-title">
+      <div>
+        <p class="eyebrow">LIVE COMMUNITY ALERTS</p>
+        <h2>Emergency Alerts</h2>
+      </div>
+    </div>
+
+    <div id="emergencyList" class="stack"></div>
+  </section>
+
+
+  <section id="rewards" class="page">
+    <div class="section-title">
+      <div>
+        <p class="eyebrow">COMMUNITY GAMIFICATION</p>
+        <h2>Rewards & Community Heroes</h2>
+        <p>Good actions build a stronger neighbourhood.</p>
+      </div>
+    </div>
+
+    <div id="myRewardCard" class="reward-summary"></div>
+
+    <div class="reward-grid">
+      <div class="panel">
+        <h3>How to earn points</h3>
+
+        <div class="reward-rule">
+          <span>🤝</span>
+          <div>
+            <strong>Help a neighbour</strong>
+            <small>+25 points</small>
+          </div>
+        </div>
+
+        <div class="reward-rule">
+          <span>🚨</span>
+          <div>
+            <strong>Respond to emergency</strong>
+            <small>+50 points</small>
+          </div>
+        </div>
+
+        <div class="reward-rule">
+          <span>💡</span>
+          <div>
+            <strong>Offer a useful skill</strong>
+            <small>+5 points</small>
+          </div>
+        </div>
+
+        <div class="reward-rule">
+          <span>⭐</span>
+          <div>
+            <strong>Receive appreciation</strong>
+            <small>+10 points</small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="leaderboard-heading">🏆 Community Leaderboard</h3>
+        <div id="leaderboard" class="leaderboard-list"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="polls" class="page">
+    <div class="section-title">
+      <div>
+        <p class="eyebrow">COMMUNITY DECISIONS</p>
+        <h2>Polls & Voting</h2>
+      </div>
+
+      <button id="newPollBtn" class="primary head-only hidden">+ Create Poll</button>
+    </div>
+
+    <div id="pollFormWrap" class="panel hidden">
+      <form id="pollForm">
+        <input id="pollQuestion" placeholder="Poll question" required maxlength="200">
+        <input id="pollOptions" placeholder="Options separated by commas" required>
+
+        <div class="form-actions">
+          <button type="button" id="cancelPoll" class="outline">Cancel</button>
+          <button class="primary">Create Poll</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="pollsList" class="stack"></div>
+  </section>
+
+
+  <section id="events" class="page">
+    <div class="section-title">
+      <div>
+        <p class="eyebrow">WHAT'S HAPPENING</p>
+        <h2>Events & Announcements</h2>
+      </div>
+
+      <button id="newEventBtn" class="primary head-only hidden">+ Add Event</button>
+    </div>
+
+    <div id="eventFormWrap" class="panel hidden">
+      <form id="eventForm">
+        <input id="eventTitle" placeholder="Event title" required maxlength="100">
+        <input id="eventDate" type="datetime-local" required>
+        <input id="eventLocation" placeholder="Location" required maxlength="100">
+        <textarea id="eventDescription" placeholder="Event details..." maxlength="700"></textarea>
+
+        <div class="form-actions">
+          <button type="button" id="cancelEvent" class="outline">Cancel</button>
+          <button class="primary">Add Event</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="eventsList" class="card-grid"></div>
+  </section>
+
+
+  <section id="dashboard" class="page">
+    <div class="section-title">
+      <div>
+        <p class="eyebrow">SOCIETY MANAGEMENT</p>
+        <h2>Society Head Dashboard</h2>
+        <p>Review community issues and emergency alerts.</p>
+      </div>
+    </div>
+
+    <div id="dashboardList" class="stack"></div>
+  </section>
+
+</main>
+
+
+<div id="authModal" class="modal hidden">
+  <div class="modal-box">
+    <button class="close" id="closeAuth">×</button>
+
+    <p class="eyebrow">PANCHAYAT ACCOUNT</p>
+    <h2 id="authTitle">Welcome back</h2>
+
+    <form id="authForm">
+      <input id="authName" placeholder="Full name" class="signup-only hidden" maxlength="60">
+      <input id="authEmail" type="email" placeholder="Email" required>
+      <input id="authPassword" type="password" placeholder="Password (6+ characters)" required minlength="6">
+      <button class="primary full" id="authSubmit">Login</button>
+    </form>
+
+    <p class="switch">
+      <span id="authSwitchText">New here?</span>
+      <button id="toggleAuth" class="text-btn">Create account</button>
+    </p>
+
+    <p id="authError" class="error"></p>
+  </div>
+</div>
+
+
+<div id="toast" class="toast"></div>
+
+<script type="module" src="app.js"></script>
+
+</body>
+</html>
